@@ -30,240 +30,93 @@ boolean lexicalError=false;
  		         private java.util.Queue<Token> queue = new java.util.LinkedList<Token>();
  		         public static SymbolHashTable symbolTable=new SymbolHashTable();
 
- 				public void setTable(){
- 					symbolTable.put(0, new SymbolTableNode("int","int", "preloaded", 0,0));
- 					symbolTable.put(0, new SymbolTableNode("char","char", "preloaded", 0,0));
- 					symbolTable.put(0, new SymbolTableNode("null","null", "preloaded", 0,0));
- 					symbolTable.put(0, new SymbolTableNode("chr","chr", "preloaded", 0,0));
- 					symbolTable.put(0, new SymbolTableNode("ord","ord", "preloaded", 0,0));
- 					symbolTable.put(0, new SymbolTableNode("len","len", "preloaded", 0,0));
- 					symbolTable.put(0, new SymbolTableNode("program","program", "keyword", 0,0));
- 					symbolTable.put(0, new SymbolTableNode("class","class", "keyword", 0,0));
- 					symbolTable.put(0, new SymbolTableNode("if","if", "keyword", 0,0));
- 					symbolTable.put(0, new SymbolTableNode("else","else", "keyword", 0,0));
- 					symbolTable.put(0, new SymbolTableNode("while","while", "keyword", 0,0));
- 					symbolTable.put(0, new SymbolTableNode("read","read", "keyword", 0,0));
- 					symbolTable.put(0, new SymbolTableNode("print","print", "keyword", 0,0));
- 					symbolTable.put(0, new SymbolTableNode("return","return", "keyword", 0,0));
- 					symbolTable.put(0, new SymbolTableNode("void","void", "keyword", 0,0));
- 					symbolTable.put(0, new SymbolTableNode("final","final", "keyword", 0,0));
- 					symbolTable.put(0, new SymbolTableNode("new","new", "keyword", 0,0));
- 				}
- 		         public int lexGetLine(){
- 		           return getLine();
- 		         }
- 		         public SymbolTableNode node;
- 		         @Override
- 		         public Token nextToken() {
- 		           if(!queue.isEmpty()) {
- 		             return queue.poll();
- 		           }
- 		           Token next = super.nextToken();
+ 				public int lexGetLine(){
+                    return getLine();
+                  }
+                  public SymbolTableNode node;
+                  @Override
+                  public Token nextToken() {
+                    if(!queue.isEmpty()) {
+                      return queue.poll();
+                    }
+                    Token next = super.nextToken();
 
- 		           while(next.getType()==WhiteSpace){
+                    while(next.getType()==WhiteSpace){
 
- 		           }
- 		           if(next.getType() != Unknown) {
- 		             Token curr=next;
+                    }
+                    if(next.getType() != Unknown) {
+                      Token curr=next;
+                      if(next.getType()==VariableType){
+                        node=new SymbolTableNode();
+                        node.type=getText();
+                        toggle=1;
+                      }
+                      if(next.getType()==Identifier && toggle==1){
+                        try{
+                        node.name=getText();
+                        node.scope=scope;
+                        }catch(NullPointerException e){
+                            System.out.println("ERROR "+getText());
+                        }
 
- 		             if(next.getText().equals("int") ||next.getText().equals("char") || next.getText().equals("null") ||next.getText().equals("chr") ||next.getText().equals("ord")||next.getText().equals("len")||next.getText().equals("program")||next.getText().equals("class")
- 							 ||next.getText().equals("if") ||next.getText().equals("else")||next.getText().equals("while")||next.getText().equals("read")||next.getText().equals("print")||next.getText().equals("return")||next.getText().equals("void")||next.getText().equals("final")||next.getText().equals("new")){
- 		             	if(isVar==1){
- 							System.out.println(next.getText()+" is reserved keyword");
- 						}
- 					 }
- 		             if(next.getType()==TOK_PROGRAM){
-
- 							 try {
- 								 node = new SymbolTableNode();
- 								 node.type = "Program Name";
- 								 node.structure = "TOK_IDENTIFIER";
- 								 node.name = null;
- 								 node.scope = 0;
- 								 node.isFinal = 0;
- 								 isProgram = 1;
- 							 } catch (NullPointerException e) {
- 								 System.out.println("Error in program");
- 							 }
-
- 		             }
- 		             if(next.getType()==TOK_CLASS){
-
- 		             	try {
- 							node = new SymbolTableNode();
-
- 								node.type = getText();
- 								node.structure = "class";
- 								node.scope = scope;
- 								isVar = 1;
- 							}catch(NullPointerException e){
- 								System.out.println("ERROR CLASS");
- 							}
-
- 		             }
- 		             if(next.getType()==TOK_FINAL){
- 	                        System.out.println(" issFinal");
- 							 try {
- 								 node = new SymbolTableNode();
- 								 node.type = getText();
- 								 node.structure = "final";
- 								 node.scope = scope;
- 								 node.isFinal=1;
- 							 } catch (NullPointerException e) {
- 								 System.out.println("ERROR FINAL");
- 							 }
-
- 		             }
- 		             if (next.getType() == TOK_IDENTIFIER && (next.getText().equals("int") || next.getText().equals("char"))){
- 		             try{
- 		                node.type=getText();
- 		                isVar=1;
- 		             }catch(NullPointerException e){
- 		               node=new SymbolTableNode();
- 		               node.type=getText();
- 		               isVar=1;
- 		               }
-
- 		             }
- 		             if(next.getType()== TOK_IDENTIFIER  && !(next.getText().equals("int") || next.getText().equals("char") ||  next.getText().equals("program") ||  next.getText().equals("class") || next.getText().equals("final") )){
-                     if(isMethod==1){
-                          node=new SymbolTableNode();
-                          node.name=getText();
-                          node.scope=0;
-                          node.isFinal=0;
-                          node.structure="method";
-                          node.type=methodParams;
-                     }else
- 		             if(isVar==1){
-
- 		               try{
- 		               node.name=getText();
- 		               node.scope=scope;
- 		               node.structure="TOK_IDENTIFIER";
- 		               if(isClass==0 && isProgram==0 && isArray==0){
- 		                   node.structure="variable";
- 		               }
- 		               isVar=0;
- 		               }catch(NullPointerException e){
- 		                   System.out.println("ERROR "+getText());
- 		               }
-
- 		              }else
- 						 if(isProgram==1){
- 							 try{
- 								 node.name=getText();
- 								 node.scope=scope;
- 								 node.structure="TOK_IDENTIFIER";
- 								 isProgram=2;
- 							 }catch(NullPointerException e){
- 								 System.out.println("ERROR "+getText());
- 							 }
- 						 }else
- 						 if(isVar!=1 && isAssign==0){
-
- 						    if(!checkScope(getText())){
- 							    System.out.println("variable " +getText()+" not defined in scope");
- 							}else if(checkScopeNode(getText()).isFinal==1){
- 							    System.out.println("variable " +getText()+" is final.");
- 							}
- 						 }else
- 						 if(isAssign==1){
- 						  if(!checkScope(getText()))
- 							    System.out.println("variable " +getText()+" not defined in scope");
- 						 }
- 		             }
- 		             if(node!=null && node.name!=null && !checkScope(node.name)){
- 		               System.out.println("inserting "+ getText());
- 		               symbolTable.insert(node.name, node.type, node.structure, node.isFinal, node.scope);
- 		               node=null;
- 		             }else {
- 		             	try{
- 		             	if(checkScope(node.name)){
- 							System.out.println("variable already exists: " + getText());
- 						}else if(node==null && node.name==null){
- 							System.out.println("ERROR " + getText());
- 						}
-
- 					 }catch(NullPointerException e){
-
- 						 }
- 		             }
- 					   if(next.getType()==TOK_LCB){
- 		               	count++;
- 		               	tracker.add(count);
- 		               	scope=count;
- 		             }
- 		             if(next.getType()==TOK_RCB){
-
- 						 tracker.remove(tracker.size()-1);
- 						 scope=tracker.get(tracker.size()-1);
-
- 		             }
- 		             return curr;
- 		           }
+                        toggle=0;
+                      }
+                      if(node!=null && !checkScope(node.name) && node.name!=null){
+                        System.out.println("inserting "+ getText());
+                        symbolTable.insert(node);
+                        node=null;
+                      }else{
+                        if(node!=null && node.name!=null){
+                        System.out.println("variable already exists: "+getText());
+                        node=null;
+                        }
+                      }
+                      if(next.getType()==CbOpen){
+                        count++;
+                        tracker.add(count);
+                        scope=count;
+                      }
+                      if(next.getType()==CbClose){
+                        tracker.remove(tracker.size()-1);
+                        scope=tracker.get(tracker.size()-1);
+                      }
+                      return curr;
+                    }
 
 
- 		           StringBuilder builder = new StringBuilder();
+                    StringBuilder builder = new StringBuilder();
 
- 		           while(next.getType() == Unknown) {
- 		             next = super.nextToken();
- 		           }
+                    while(next.getType() == Unknown) {
+                      next = super.nextToken();
+                    }
 
- 		           queue.offer(next);
 
- 		           return new CommonToken(Unknown, builder.toString());
- 		         }
- 		       public Boolean checkScope(String name){
- 					   SymbolTableNode n=null;
- 					   if(name.equals("int") ||name.equals("char") || name.equals("null") ||name.equals("chr") ||name.equals("ord")||name.equals("len")||name.equals("program")||name.equals("class")
- 							   ||name.equals("if") ||name.equals("else")||name.equals("while")||name.equals("read")||name.equals("print")||name.equals("return")||name.equals("void")||name.equals("final")||name.equals("new")){
- 					   	return true;
- 					   }
+                    queue.offer(next);
 
- 					   for(int i=0; i<tracker.size(); i++) {
- 						  // for(Integer temp: set) {
- 							   n = (SymbolTableNode) symbolTable.get(tracker.get(i), name);
-
- 						//   }
- 						try {
- 							if (n != null)
- 								return true;
- 						}catch(NullPointerException e){
- 								return false;
- 							}
- 						}
- 						return false;
-
- 			   }
- 			   public SymbolTableNode checkScopeNode(String name){
- 	           	           				   SymbolTableNode n=null;
- 	           	           				   for(int i=0; i<tracker.size(); i++) {
- 	           	           					  // for(Integer temp: set) {
- 	           	           						   n = (SymbolTableNode) symbolTable.get(tracker.get(i), name);
- 	           								   try {
- 	           									   if (n != null)
- 	           										   return n;
- 	           								   }catch(NullPointerException e){
- 	           								   }
- 	           							   }
- 	           	           					return n;
-
- 	           	           		   }
-// 		            public void addTempStack(String type, String name){
-// 		                  Stack<ASTNode> temp=new Stack<>();
-// 		                  temp.push(new ASTNode(type, name));
-// 		                  tempStack.push(temp);
-// 					}
- 				public void printSymbolTable(){
- 					Set<Integer> keys=symbolTable.SymbolHashTable().keySet();
- 	                int line=0;
- 	                for(Integer i: keys){
- 	                    SymbolTableNode n = (SymbolTableNode) symbolTable.SymbolHashTable().get(i);
- 	                    while(n != null){
- 		                    System.out.println(line+": "+n.name+", "+n.structure+", scope: "+n.scope+", type: "+n.type);
- 	                        n=n.child;
- 	                    }
- 	                }
+                    return new CommonToken(Unknown, builder.toString());
+                  }
+                public Boolean checkScope(String name){
+                        if(symbolTable.get(name)==null){
+                            return false;
+                        }else{
+                            return true;
+                        }
+                    }
+                     public void addTempStack(String type, String name){
+                    	    Stack<ASTNode> temp=new Stack<>();
+                    	    temp.push(new ASTNode(type, name));
+                    	    tempStack.push(temp);
+                    	}
+                    public void printSymbolTable(){
+                        Set<Integer> keys=symbolTable.SymbolHashTable().keySet();
+                        int line=0;
+                        for(Integer i: keys){
+                            SymbolTableNode n = (SymbolTableNode) symbolTable.SymbolHashTable().get(i);
+                            while(n != null){
+                                System.out.println(line+": "+n.name+", "+n.structure+", scope: "+n.scope+", type: "+n.type);
+                                n=n.child;
+                            }
+                        }
 
  				}
 }
@@ -286,6 +139,7 @@ boolean lexicalError=false;
     public static void testm(){
         System.out.println("PRINTING");
     }
+    public static ASTNode v= new ASTNode();
     public static Stack<Stack<ASTNode>> tempStack=new Stack<Stack<ASTNode>>(); //list of children of the current subroot
     public static Stack<ASTNode> nodeStack=new Stack<ASTNode>(); //all subtrees
     public static ASTNode Ptree=new ASTNode(); //The root of the program
@@ -293,6 +147,8 @@ boolean lexicalError=false;
     static boolean hasParam=false;
     static boolean returnsExpr =false;
     static String token= "";
+    static int id=0;
+    static int pid=-1;
     /* adds elements in last subtree
       deletes last list
       adds last subtree to last list (append as child)
@@ -337,6 +193,17 @@ boolean lexicalError=false;
         printLastTempStack();
         System.out.println("DONE addToLastList");
     }
+
+    public static void addToLastList(int id, int pid, String type, String name){
+        try{
+            tempStack.peek().push(new ASTNode(id,pid,type,name));
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        printLastTempStack();
+        System.out.println("DONE addToLastList");
+    }
+
       //creates a new subtree with root is the node created of the passed info
     public static void createSubtree(String type, String name){
         try{
@@ -346,6 +213,16 @@ boolean lexicalError=false;
         }
         System.out.println("DONE createSubtree");
     }
+
+    public static void createSubtree(int id, int pid, String type, String name){
+        try{
+            nodeStack.push(new ASTNode(id, pid, type,name));
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        System.out.println("DONE createSubtree");
+    }
+
     public static void printLastTempStack(){
         try{
             System.out.println("LAST IN LIST::: "+tempStack.peek().peek().toString());
@@ -360,59 +237,98 @@ boolean lexicalError=false;
             System.out.println(e);
         }
     }
+
+    public static void printlist(Stack<ASTNode> s){
+            Object[] ar = s.toArray();
+            for (Object nd : ar) {
+                System.out.println(nd.toString());
+            }
+    }
+    public static void tmethod(){
+        ASTNode f= nodeStack.pop();
+        System.out.println(";;;;;;;;;;;;;;");
+        f.print(1);
+        nodeStack.peek().add(f);
+    }
 }
 
 @parser::header{
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Stack;
-
 }
 
 //Rules
-program: {token=lexer.getText();     System.out.println("*"+token);}      prog             ;
+program: {token=lexer.getText();     }      prog   {System.out.println("------------"+token+"\n");  nodeStack.peek().printcaller(1);  System.out.println("\n------------"+token);};
 prog: TOK_PROGRAM       {createList(); System.out.println("**"+token);     token=lexer.getText();     System.out.println("*** "+token);}
-        TOK_IDENTIFIER  {createSubtree("program name: ",token); System.out.println("****"+token);   /* printlastNodeStack();*/   token=lexer.getText();}
+        TOK_IDENTIFIER  {createSubtree(id++, pid, "program name: ",token); System.out.println("****"+token);   /* printlastNodeStack();*/   token=lexer.getText();  pid++;}
             (constDecl
             | varDecl
             | classDecl         )*
-        TOK_LCB
-            (methodDecl         )+
-        TOK_RCB         { moveLastListToLastSubtree();}    ;        /////
+        tok_lcb             {token=lexer.getText();}
+            (methodDecl        {attachLastSubtreeToLastList();hasParam=false;} )+
+        tok_rcb         { moveLastListToLastSubtree(); }    ;        /////
 
-constDecl: TOK_FINAL    { createList(); addToLastList("TOK_FINAL",token);     token=lexer.getText();}
-            varType       { addToLastList("type",token);                 token=lexer.getText();}
-            TOK_IDENTIFIER  { createSubtree("TOK_IDENTIFIER",token);               token=lexer.getText();}
-            TOK_OP_ASSIGN   {  addToLastList("TOK_OP_ASSIGN",token);               token=lexer.getText();}
-            (TOK_INTLIT|TOK_CHARLIT)   { addToLastList("TOK_VALUE",token);   token=lexer.getText();}
+
+constDecl: TOK_FINAL    {createList(); addToLastList(id,pid,"FINAL ",token);     token=lexer.getText();}
+            varType       {addToLastList(id,pid,"TYPE ",token);                 token=lexer.getText();}
+            TOK_IDENTIFIER  {createSubtree(id,pid,"TOK_IDENTIFIER ",token);               token=lexer.getText();}
+            TOK_OP_ASSIGN   {addToLastList(id,pid,"TOK_OP_ASSIGN ",token);               token=lexer.getText();}
+            (TOK_INTLIT|TOK_CHARLIT)   {addToLastList(id,pid,"VALUE ",token);   token=lexer.getText();}
             TOK_SEMI        {System.out.println("~~~~~~~~"+token);  moveLastListToLastSubtree(); attachLastSubtreeToLastList();    token=lexer.getText();}  ;
-
 //constDecl: TOK_FINAL varType TOK_IDENTIFIER TOK_OP_ASSIGN (TOK_INTLIT|TOK_CHARLIT) TOK_SEMI;
 
-
-varDecl: varType       {readType="type"; System.out.println("TYPE HERE");   createList(); addToLastList(readType,"name"); token=lexer.getText();}
-        TOK_IDENTIFIER  {createSubtree("type","name");  token=lexer.getText();}
+varDecl: varType       {readType=token; System.out.println("TYPE HERE GETTEXT"+ readType);   createList(); addToLastList(id,pid,"TYPE",readType); {System.out.print("bbbbbbb"+token);}token=lexer.getText();System.out.print("bbbbbbb"+token);}
+        {}
+        TOK_IDENTIFIER  {createSubtree(id,pid, "TOK_IDENTIFIER",token);  token=lexer.getText();}
         (
         TOK_COMMA       {moveLastListToLastSubtree(); attachLastSubtreeToLastList();    token=lexer.getText();}
-        TOK_IDENTIFIER  {createList(); addToLastList(readType,"name"); createSubtree("type","name");    token=lexer.getText();}
+        TOK_IDENTIFIER  {createList(); addToLastList(id,pid,"TOK_TYPE",readType); createSubtree(id,pid, "TOK_IDENTIFIER",token);    token=lexer.getText();}
         )*
         TOK_SEMI        {moveLastListToLastSubtree(); attachLastSubtreeToLastList();    token=lexer.getText();}  ;
 
+classDecl: TOK_CLASS    {createList(); addToLastList(id,pid,"CLASS",token);    token=lexer.getText();}
+            TOK_IDENTIFIER  {createSubtree(id,pid, "TOK_IDENTIFIER",token); token=lexer.getText();}
+            tok_lcb         {token=lexer.getText();}
+            (varDecl)*
+            tok_rcb         {moveLastListToLastSubtree(); attachLastSubtreeToLastList();    token=lexer.getText();}  ;
+
+methodDecl: (varType| TOK_VOID)     {createList();      addToLastList(id,pid,"TYPE",token);   token=lexer.getText();}
+            TOK_IDENTIFIER          {createSubtree(id,pid, "TOK_IDENTIFIER ",token); token=lexer.getText(); moveLastListToLastSubtree();}
+            tok_lp              {token=lexer.getText();}
+            (formPars)?         {token=lexer.getText();}
+            tok_rp              {if(hasParam){  System.out.println("00000000000000000");
+
+                                    moveLastListToLastSubtree(); attachLastSubtreeToLastList();
+                                    System.out.println("000000000000000000");
+                                    moveLastListToLastSubtree();
+                                    System.out.println("000000000000000000");
+                                    }
+                                    token=lexer.getText();
+                                    }
+            (varDecl)*          {token=lexer.getText();}
+            block*              {token=lexer.getText(); System.out.println("*** "); nodeStack.peek().printcaller(1);if(hasParam){tmethod();}System.out.println("*** "); nodeStack.peek().print(1);}        ;
+
+//formPars: varType{lexer.methodPars=lexer.getText();} TOK_IDENTIFIER (TOK_COMMA varType TOK_IDENTIFIER)*;
+formPars: varType      {hasParam=true; createSubtree(id, pid, "PARAMS_ROOT", "Params");
+                        createList(); createList(); addToLastList(id, pid,"TYPE",token);  token=lexer.getText();}
+        TOK_IDENTIFIER  {createSubtree(id, pid,"TOK_IDENTIFIER",token); token=lexer.getText();}
+        (TOK_COMMA      {moveLastListToLastSubtree(); attachLastSubtreeToLastList();    token=lexer.getText();}
+        varType        {createList(); addToLastList(id, pid,"TYPE",token);  token=lexer.getText();}
+        TOK_IDENTIFIER {createSubtree(id, pid,"TOK_IDENTIFIER",token);  token=lexer.getText();} )*;
 
 
-classDecl: TOK_CLASS  TOK_IDENTIFIER TOK_LCB (varDecl)* TOK_RCB ;
-methodDecl: (varType| TOK_VOID) TOK_IDENTIFIER TOK_LP (formPars)? TOK_RP (varDecl)* block;
-formPars: varType{lexer.methodPars=lexer.getText();} TOK_IDENTIFIER (TOK_COMMA varType TOK_IDENTIFIER)*;
-block: TOK_LCB (statement)* TOK_RCB;
+block: tok_lcb (statement)* tok_rcb;
+
 statement: designator (TOK_OP_ASSIGN expr|actPars) TOK_SEMI
-| TOK_IF TOK_LP  condition TOK_RP (TOK_LCB)? (statement)* (TOK_RCB)? (TOK_ELSE (TOK_LCB)? statement (TOK_RCB)?)*
-| TOK_WHILE TOK_LP condition TOK_RP statement
+| TOK_IF tok_lp  condition tok_rp (tok_lcb)? (statement)* (tok_rcb)? (TOK_ELSE (tok_lcb)? statement (tok_rcb)?)*
+| TOK_WHILE tok_lp condition tok_rp statement
 | TOK_RETURN (expr)? TOK_SEMI
-| TOK_READ TOK_LP designator TOK_RP TOK_SEMI
-| TOK_PRINT TOK_LP expr (TOK_COMMA TOK_INTLIT)? TOK_RP TOK_SEMI
+| TOK_READ tok_lp designator tok_rp TOK_SEMI
+| TOK_PRINT tok_lp expr (TOK_COMMA TOK_INTLIT)? tok_rp TOK_SEMI
 |  block
 | TOK_SEMI;
-actPars: TOK_LP (expr (TOK_COMMA expr)*)? TOK_RP;
+actPars: tok_lp (expr (TOK_COMMA expr)*)? tok_rp;
 condition: expr relop expr;
 relop: TOK_OP_REL;
 expr: ('-')? term  (TOK_OP_ADD term)*;
@@ -421,11 +337,38 @@ factor: designator (actPars)?
 | TOK_INTLIT
 | TOK_CHARLIT
 | TOK_NEW x
-| TOK_LP expr TOK_RP;
-designator: TOK_IDENTIFIER (TOK_DOT TOK_IDENTIFIER | TOK_LB expr TOK_RB)*;
-x:TOK_IDENTIFIER ((TOK_LP expr TOK_RP)?|(TOK_LB (expr)? TOK_RB)*);
+| tok_lp expr tok_rp;
+designator: TOK_IDENTIFIER
+            (TOK_DOT TOK_IDENTIFIER
+            | tok_lb    {token=lexer.getText();}
+            {
+            try{
+              System.out.println(token+".........");
+            if(token.equals("-")){System.out.println("cLLLLLLLLLLL");}
+            else{}
+            }catch(Exception e){
+                System.out.println("kkk"+e);
+            }
+            }
+            expr tok_rb)*;
 
-varType: TOK_IDENTIFIER (TOK_LB TOK_RB)?;
+x:TOK_IDENTIFIER ((tok_lp expr tok_rp)?|(tok_lb (expr)? tok_rb)*);
+
+
+
+tok_lcb:TOK_LCB;
+tok_rcb: TOK_RCB;
+tok_lp: TOK_LP;
+tok_rp: TOK_RP;
+semi: TOK_SEMI;
+validarray:tok_lb expr tok_rb;
+invalidarray:tok_lb '\'' {System.out.println("cannot define with character index");} tok_rb;
+tok_lb: TOK_LB;
+tok_rb:TOK_RB;
+varType: (vartp)|
+(varArray);
+vartp:TOK_IDENTIFIER ;
+varArray: TOK_IDENTIFIER (tok_lb tok_rb);
 
 //////////////////////////
 //MicroJava Tokens:

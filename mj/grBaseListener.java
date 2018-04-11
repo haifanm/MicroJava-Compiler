@@ -1,8 +1,9 @@
-// Generated from C:/Users/User/IdeaProjects/anotherproject/src\gr.g4 by ANTLR 4.7
+// Generated from C:/Users/MSE/IdeaProjects/java/src\gr.g4 by ANTLR 4.7
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Stack;
+
 
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -44,13 +45,13 @@ public class grBaseListener implements grListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterConstDecl(grParser.ConstDeclContext ctx) { }
+	@Override public void enterTok_rcb(grParser.Tok_rcbContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitConstDecl(grParser.ConstDeclContext ctx) { }
+	@Override public void exitTok_rcb(grParser.Tok_rcbContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -63,6 +64,18 @@ public class grBaseListener implements grListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitVarDecl(grParser.VarDeclContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterConstDecl(grParser.ConstDeclContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitConstDecl(grParser.ConstDeclContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -224,66 +237,6 @@ public class grBaseListener implements grListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterTok_lcb(grParser.Tok_lcbContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitTok_lcb(grParser.Tok_lcbContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterTok_rcb(grParser.Tok_rcbContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitTok_rcb(grParser.Tok_rcbContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterTok_lp(grParser.Tok_lpContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitTok_lp(grParser.Tok_lpContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterTok_rp(grParser.Tok_rpContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitTok_rp(grParser.Tok_rpContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterSemi(grParser.SemiContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitSemi(grParser.SemiContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterValidarray(grParser.ValidarrayContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -327,6 +280,18 @@ public class grBaseListener implements grListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitTok_rb(grParser.Tok_rbContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSemi(grParser.SemiContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSemi(grParser.SemiContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

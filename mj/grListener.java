@@ -1,8 +1,9 @@
-// Generated from C:/Users/User/IdeaProjects/anotherproject/src\gr.g4 by ANTLR 4.7
+// Generated from C:/Users/MSE/IdeaProjects/java/src\gr.g4 by ANTLR 4.7
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Stack;
+
 
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -32,15 +33,15 @@ public interface grListener extends ParseTreeListener {
 	 */
 	void exitProg(grParser.ProgContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link grParser#constDecl}.
+	 * Enter a parse tree produced by {@link grParser#tok_rcb}.
 	 * @param ctx the parse tree
 	 */
-	void enterConstDecl(grParser.ConstDeclContext ctx);
+	void enterTok_rcb(grParser.Tok_rcbContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link grParser#constDecl}.
+	 * Exit a parse tree produced by {@link grParser#tok_rcb}.
 	 * @param ctx the parse tree
 	 */
-	void exitConstDecl(grParser.ConstDeclContext ctx);
+	void exitTok_rcb(grParser.Tok_rcbContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link grParser#varDecl}.
 	 * @param ctx the parse tree
@@ -51,6 +52,16 @@ public interface grListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitVarDecl(grParser.VarDeclContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link grParser#constDecl}.
+	 * @param ctx the parse tree
+	 */
+	void enterConstDecl(grParser.ConstDeclContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link grParser#constDecl}.
+	 * @param ctx the parse tree
+	 */
+	void exitConstDecl(grParser.ConstDeclContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link grParser#classDecl}.
 	 * @param ctx the parse tree
@@ -182,56 +193,6 @@ public interface grListener extends ParseTreeListener {
 	 */
 	void exitX(grParser.XContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link grParser#tok_lcb}.
-	 * @param ctx the parse tree
-	 */
-	void enterTok_lcb(grParser.Tok_lcbContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link grParser#tok_lcb}.
-	 * @param ctx the parse tree
-	 */
-	void exitTok_lcb(grParser.Tok_lcbContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link grParser#tok_rcb}.
-	 * @param ctx the parse tree
-	 */
-	void enterTok_rcb(grParser.Tok_rcbContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link grParser#tok_rcb}.
-	 * @param ctx the parse tree
-	 */
-	void exitTok_rcb(grParser.Tok_rcbContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link grParser#tok_lp}.
-	 * @param ctx the parse tree
-	 */
-	void enterTok_lp(grParser.Tok_lpContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link grParser#tok_lp}.
-	 * @param ctx the parse tree
-	 */
-	void exitTok_lp(grParser.Tok_lpContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link grParser#tok_rp}.
-	 * @param ctx the parse tree
-	 */
-	void enterTok_rp(grParser.Tok_rpContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link grParser#tok_rp}.
-	 * @param ctx the parse tree
-	 */
-	void exitTok_rp(grParser.Tok_rpContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link grParser#semi}.
-	 * @param ctx the parse tree
-	 */
-	void enterSemi(grParser.SemiContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link grParser#semi}.
-	 * @param ctx the parse tree
-	 */
-	void exitSemi(grParser.SemiContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link grParser#validarray}.
 	 * @param ctx the parse tree
 	 */
@@ -271,6 +232,16 @@ public interface grListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitTok_rb(grParser.Tok_rbContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link grParser#semi}.
+	 * @param ctx the parse tree
+	 */
+	void enterSemi(grParser.SemiContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link grParser#semi}.
+	 * @param ctx the parse tree
+	 */
+	void exitSemi(grParser.SemiContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link grParser#varType}.
 	 * @param ctx the parse tree

@@ -1,8 +1,8 @@
 T__0=1
-TOK_INTLIT=2
-WhiteSpace=3
-Comments=4
-Unknown=5
+WhiteSpace=2
+Comments=3
+Unknown=4
+TOK_INTLIT=5
 TOK_CLASS=6
 TOK_FINAL=7
 TOK_ELSE=8

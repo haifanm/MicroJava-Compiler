@@ -1,14 +1,20 @@
 program myprogram
 
-    //int x;
-    final int size='b';
+    int x;
+    final int size=3;
 
     class Table{
-        int y;
+      //  int y;
     }
 
 {
-    void main(char c){
-        x= 'x';
+    void main(int a){
+       // x=3;
+    }
+
+    void main(char t)
+    int f;
+    {
+           // x=3;
     }
 }
