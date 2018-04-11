@@ -1,0 +1,14 @@
+program myprogram
+
+    //int x;
+    final int size='b';
+
+    class Table{
+        int y;
+    }
+
+{
+    void main(char c){
+        x= 'x';
+    }
+}
