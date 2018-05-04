@@ -1,10 +1,9 @@
 program prog
 final int size;
-{int name= 10;
+{int name;
 int x;
 }
 {
 int haifa=20;
 int x=29;
 }
-int abou=0;

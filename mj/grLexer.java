@@ -1,4 +1,4 @@
-// Generated from C:/Users/MSE/IdeaProjects/java/src\gr.g4 by ANTLR 4.7
+// Generated from gr.g4 by ANTLR 4.7.1
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,7 +16,7 @@ import org.antlr.v4.runtime.misc.*;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class grLexer extends Lexer {
-	static { RuntimeMetaData.checkVersion("4.7", RuntimeMetaData.VERSION); }
+	static { RuntimeMetaData.checkVersion("4.7.1", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
@@ -55,8 +55,8 @@ public class grLexer extends Lexer {
 		null, "'''", null, null, null, null, "'class'", "'final'", "'else'", "'if'", 
 		"'new'", "'read'", "'return'", "'void'", "'while'", "'print'", "'program'", 
 		"','", "';'", "'.'", "'['", "']'", "'{'", "'}'", "'('", "')'", null, null, 
-		null, "'=='", "'!='", "'<'", null, "'>'", null, "'='", "'+'", "'-'", "'*'", 
-		"'/'", "'%'"
+		null, "'=='", "'!='", "'<'", "'<='", "'>'", "'>='", "'='", "'+'", "'-'", 
+		"'*'", "'/'", "'%'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
 		null, null, "WhiteSpace", "Comments", "Unknown", "TOK_INTLIT", "TOK_CLASS", 
@@ -104,8 +104,8 @@ public class grLexer extends Lexer {
 
 	boolean lexicalError=false;
 	 public ArrayList<Integer> tracker=new ArrayList<Integer>(){{   add(0);}};;
-	 Writer errors=new Writer("errors.txt");
-	 Writer symbols=new Writer("Symbol Table");
+	 Writer errors=new Writer("phase3+/errors.txt");
+	 Writer symbols=new Writer("phase3+/Symbol Table");
 	 		         public static Stack<Stack<ASTNode>> tempStack=new Stack<Stack<ASTNode>>(); //list of children of the current subroot
 	 		         Stack<ASTNode> nodeStack=new Stack<ASTNode>(); //all subtrees
 	 		         ASTNode Ptree=new ASTNode(); //The root of the program
@@ -405,7 +405,7 @@ public class grLexer extends Lexer {
 	 	                    }
 	 	                }
 	 				}
-	 				
+
 
 
 	public grLexer(CharStream input) {
@@ -414,7 +414,7 @@ public class grLexer extends Lexer {
 	}
 
 	@Override
-	public String getGrammarFileName() { return "gr.g4"; }
+	public String getGrammarFileName() { return "phase3+/gr.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }
@@ -577,7 +577,7 @@ public class grLexer extends Lexer {
 		"\2\u00da:\3\2\2\2\u00db\u00dc\7?\2\2\u00dc\u00dd\7?\2\2\u00dd<\3\2\2\2"+
 		"\u00de\u00df\7#\2\2\u00df\u00e0\7?\2\2\u00e0>\3\2\2\2\u00e1\u00e2\7>\2"+
 		"\2\u00e2@\3\2\2\2\u00e3\u00e4\7>\2\2\u00e4\u00e5\7?\2\2\u00e5B\3\2\2\2"+
-		"\u00e6\u00e7\7@\2\2\u00e7D\3\2\2\2\u00e8\u00e9\7>\2\2\u00e9\u00ea\7?\2"+
+		"\u00e6\u00e7\7@\2\2\u00e7D\3\2\2\2\u00e8\u00e9\7@\2\2\u00e9\u00ea\7?\2"+
 		"\2\u00eaF\3\2\2\2\u00eb\u00ec\7?\2\2\u00ecH\3\2\2\2\u00ed\u00ee\7-\2\2"+
 		"\u00eeJ\3\2\2\2\u00ef\u00f0\7/\2\2\u00f0L\3\2\2\2\u00f1\u00f2\7,\2\2\u00f2"+
 		"N\3\2\2\2\u00f3\u00f4\7\61\2\2\u00f4P\3\2\2\2\u00f5\u00f6\7\'\2\2\u00f6"+

@@ -1,0 +1,21 @@
+program Test3
+	{
+		void main()
+			int x,  y;
+			int z;
+		{
+			x = 100;
+			y = 50;
+
+			z = x + y;
+			print(z);
+			z = x * y;
+			print(z);
+			z = x + y;  //subt
+			print(z);
+			z = x / y;
+			print(z);
+			z = x % y;
+			print(z);
+		}
+	}

@@ -1,4 +1,4 @@
-// Generated from C:/Users/MSE/IdeaProjects/java/src\gr.g4 by ANTLR 4.7
+// Generated from gr.g4 by ANTLR 4.7.1
 
 import java.util.ArrayList;
 import java.util.Arrays;

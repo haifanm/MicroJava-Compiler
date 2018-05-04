@@ -3,6 +3,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Stack;
+import java.util.Set;
 
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -102,6 +103,16 @@ public interface grListener extends ParseTreeListener {
 	 */
 	void exitStatement(grParser.StatementContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link grParser#assignment}.
+	 * @param ctx the parse tree
+	 */
+	void enterAssignment(grParser.AssignmentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link grParser#assignment}.
+	 * @param ctx the parse tree
+	 */
+	void exitAssignment(grParser.AssignmentContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link grParser#actPars}.
 	 * @param ctx the parse tree
 	 */
@@ -182,96 +193,6 @@ public interface grListener extends ParseTreeListener {
 	 */
 	void exitX(grParser.XContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link grParser#tok_lcb}.
-	 * @param ctx the parse tree
-	 */
-	void enterTok_lcb(grParser.Tok_lcbContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link grParser#tok_lcb}.
-	 * @param ctx the parse tree
-	 */
-	void exitTok_lcb(grParser.Tok_lcbContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link grParser#tok_rcb}.
-	 * @param ctx the parse tree
-	 */
-	void enterTok_rcb(grParser.Tok_rcbContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link grParser#tok_rcb}.
-	 * @param ctx the parse tree
-	 */
-	void exitTok_rcb(grParser.Tok_rcbContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link grParser#tok_lp}.
-	 * @param ctx the parse tree
-	 */
-	void enterTok_lp(grParser.Tok_lpContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link grParser#tok_lp}.
-	 * @param ctx the parse tree
-	 */
-	void exitTok_lp(grParser.Tok_lpContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link grParser#tok_rp}.
-	 * @param ctx the parse tree
-	 */
-	void enterTok_rp(grParser.Tok_rpContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link grParser#tok_rp}.
-	 * @param ctx the parse tree
-	 */
-	void exitTok_rp(grParser.Tok_rpContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link grParser#semi}.
-	 * @param ctx the parse tree
-	 */
-	void enterSemi(grParser.SemiContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link grParser#semi}.
-	 * @param ctx the parse tree
-	 */
-	void exitSemi(grParser.SemiContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link grParser#validarray}.
-	 * @param ctx the parse tree
-	 */
-	void enterValidarray(grParser.ValidarrayContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link grParser#validarray}.
-	 * @param ctx the parse tree
-	 */
-	void exitValidarray(grParser.ValidarrayContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link grParser#invalidarray}.
-	 * @param ctx the parse tree
-	 */
-	void enterInvalidarray(grParser.InvalidarrayContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link grParser#invalidarray}.
-	 * @param ctx the parse tree
-	 */
-	void exitInvalidarray(grParser.InvalidarrayContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link grParser#tok_lb}.
-	 * @param ctx the parse tree
-	 */
-	void enterTok_lb(grParser.Tok_lbContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link grParser#tok_lb}.
-	 * @param ctx the parse tree
-	 */
-	void exitTok_lb(grParser.Tok_lbContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link grParser#tok_rb}.
-	 * @param ctx the parse tree
-	 */
-	void enterTok_rb(grParser.Tok_rbContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link grParser#tok_rb}.
-	 * @param ctx the parse tree
-	 */
-	void exitTok_rb(grParser.Tok_rbContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link grParser#varType}.
 	 * @param ctx the parse tree
 	 */
@@ -282,23 +203,13 @@ public interface grListener extends ParseTreeListener {
 	 */
 	void exitVarType(grParser.VarTypeContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link grParser#vartp}.
+	 * Enter a parse tree produced by {@link grParser#ident}.
 	 * @param ctx the parse tree
 	 */
-	void enterVartp(grParser.VartpContext ctx);
+	void enterIdent(grParser.IdentContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link grParser#vartp}.
+	 * Exit a parse tree produced by {@link grParser#ident}.
 	 * @param ctx the parse tree
 	 */
-	void exitVartp(grParser.VartpContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link grParser#varArray}.
-	 * @param ctx the parse tree
-	 */
-	void enterVarArray(grParser.VarArrayContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link grParser#varArray}.
-	 * @param ctx the parse tree
-	 */
-	void exitVarArray(grParser.VarArrayContext ctx);
+	void exitIdent(grParser.IdentContext ctx);
 }

@@ -402,9 +402,6 @@ classDecl: TOK_CLASS  TOK_IDENTIFIER TOK_LCB (varDecl)* tok_rcb ;
 methodDecl: (varType| TOK_VOID) TOK_IDENTIFIER TOK_LP (formPars)? TOK_RP (varDecl)* block;
 formPars: varType TOK_IDENTIFIER (TOK_COMMA varType TOK_IDENTIFIER)*;
 block: TOK_LCB (statement)* tok_rcb;
-
-static int isident=0;
-
 statement: designator (TOK_OP_ASSIGN expr|actPars) semi
 | TOK_IF TOK_LP  condition TOK_RP (TOK_LCB)? (statement)* (tok_rcb)? (TOK_ELSE (TOK_LCB)? statement (tok_rcb)?)*
 | TOK_WHILE TOK_LP condition TOK_RP statement

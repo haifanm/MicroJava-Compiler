@@ -1,20 +1,67 @@
-program myprogram
-
-    int x;
-    final int size=3;
-
-    class Table{
-      //  int y;
-    }
-
+program Test2
+	char[] sieve;
+	int max;		// maximum prime to be found
+	int npp;		// numbers per page
 {
-    void main(int a){
-       // x=3;
-    }
-
-    void main(char t)
-    int f;
+	void put(int x){
+		if (npp == 10) {print(chr(13)); print(chr(10)); npp = 0;}
+		print(x, 5);
+		npp = npp + 1;
+	}
+	void found(int x)
+		int i;
     {
-           // x=3;
-    }
-}
+		put(x);
+		i = x;
+		while (i <= max) {sieve[i] = 'o'; i = i + x;}
+	}
+	void main()
+		int i, ready;
+	{
+		read(max);
+		npp = 0;
+		sieve = new char[max+1];
+		i = 0;
+		while (i <= max) {sieve[i] = 'x'; i = i + 1;}
+		i = 2;
+		while (i <= max) {
+			found(i);
+			ready = 0;
+			while(ready == 0) {
+				if (i > max) ready = 1;
+				else if (sieve[i] == 'x') ready = 1;
+				else i = i + 1;
+	}}}}
+
+//        designator: TOK_IDENTIFIER (TOK_DOT TOK_IDENTIFIER | TOK_LB ex TOK_RB)*;
+//        x:TOK_IDENTIFIER (object_call|array_call);
+//        array_call: (TOK_LB (ex)? TOK_RB)*;
+//        object_call: (TOK_LP expr TOK_RP)?;
+//        varType: ident;
+//        ex: expr;
+//
+//        assignment:designator (assign_helper|actPars) TOK_SEMI;
+//        assign_helper:TOK_OP_ASSIGN expr;
+//        actPars: TOK_LP (expr (TOK_COMMA expr)*)? TOK_RP;
+
+
+
+		npp = 0;
+
+		npp = npp + 1;
+
+		i = x;
+sieve[i] = 'o';
+i = i + x;}
+
+		npp = 0;
+		sieve = new char[max+1];
+		i = 0;
+		sieve[i] = 'x';
+		i = i + 1;}
+		i = 2;
+		ready = 0;
+		ready = 1;
+		 ready = 1;
+		 i = i + 1;
+	}}}}
