@@ -1,8 +1,8 @@
 program Test3
-	{
+	{	
 		void main()
 			int x,  y;
-			int z;
+			int z; 
 		{
 			x = 100;
 			y = 50;
@@ -11,7 +11,7 @@ program Test3
 			print(z);
 			z = x * y;
 			print(z);
-			z = x + y;  //subt
+			z = x - y;
 			print(z);
 			z = x / y;
 			print(z);

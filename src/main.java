@@ -38,6 +38,13 @@ public class main  {
         semanticVisitor.setParser(visitorParser);
         semanticVisitor.setLexer(visitorLexer);
         semanticVisitor.visit(tree);
+
+
+        QuadrupleVisitor quadrupleVisitor = new QuadrupleVisitor();
+        quadrupleVisitor.setParser(visitorParser);
+        quadrupleVisitor.setLexer(visitorLexer);
+        quadrupleVisitor.visit(tree);
+
         /*ParseTreeWalker walker=new ParseTreeWalker();
         ParseTreeListener lister=new ParseTreeListener() {
             ParseTree smalltree;
